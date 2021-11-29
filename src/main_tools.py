@@ -14,7 +14,7 @@ def quotes(character):
     what = list(engine.execute(f"SELECT quote_ FROM Quote WHERE Author_idAuthor = '{friends_character}';"))
     return what
 
- 
+#return random.choice(what) 
 
 def episodes (episodio):
     episode = list(engine.execute(f"SELECT idEpisodes from project_friends.Episodes WHERE EpTitle = '{episodio}'"))
@@ -22,6 +22,7 @@ def episodes (episodio):
     what = list(engine.execute(f"SELECT quote_ FROM Quote WHERE Episodes_idEpisodes = '{episode[0][0]}';"))
     return what
 
+#return random.choice(what)
 
 
 def newcharacter(character):
