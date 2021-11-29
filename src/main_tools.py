@@ -80,10 +80,10 @@ def analisis_sentimientos(AuthorName):
     WHERE AuthorName= '{AuthorName}'; 
     """
     data = pd.read_sql_query(query,engine)
-     #quiero un df, por eso retiro el .json y el record
+     #this function returns a df
     return data
 
-#tokenizar mi quote
+
 def tokenizer(phrases):
     nlp = spacy.load("en_core_web_sm")
     tokens = nlp(phrases)

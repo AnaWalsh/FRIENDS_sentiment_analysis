@@ -85,7 +85,7 @@ def insertEpisode(df):
 
 def gimmeId(que,string):
     """
-    Devuelve el ID de lo que le pidamos sabiendo que ese elemento EXISTE
+    Returns the ID of whatever we ask for knowing that the element exists.
     """
     if que == "author":
         return list(engine.execute(f"SELECT idAuthor FROM Author WHERE AuthorName ='{string}';"))[0][0]
