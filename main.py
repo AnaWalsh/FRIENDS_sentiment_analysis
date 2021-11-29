@@ -37,12 +37,19 @@ def insertamensaje():
     return mnt.nuevomensaje(episodio, frase, personaje)
 
 
-@app.route("/borrarfrase", methos=["POST"])
+@app.route("/borrarfrase", methods=["POST"])
 def borrar():
-    return mnt.borrarmensaje(text)
+    textito = request.form.get("texto")
+    return mnt.borrarmensaje(textito)
 
 
-
+@app.route("/sentimientos/<AuthorName>") 
+def sentimientos(AuthorName):
+    df= mnt.analisis_sentimientos(AuthorName)
+    df["phrases_token"] = df["quote_"].apply(mnt.tokenizer) #sustituir phrases_name por quote_
+    df["resultado"] = df["phrases_token"].apply(mnt.sentiment)
+    print (df.resultado)
+    return str(df.resultado.mean())
 
 
 

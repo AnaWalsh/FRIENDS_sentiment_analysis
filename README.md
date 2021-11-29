@@ -1,6 +1,6 @@
 # W6-api-sentiment-project
 
-![foto]guardo foto en github y aqui pongo la url entre ()
+![foto](url github)
 
 ## Objective
 
@@ -17,55 +17,99 @@ The objective of this project is to create an API which is able to receive data 
 ## The API
 
 ### Overview
-Welcome to the F.R.I.E.N.D.S API! Using this service, you can get the characters in the TV series Friends, quotes for each character and quotes for a known character and episode. 
+Welcome to the Friends API! Using this service, you can get the characters in the TV series Friends, quotes for each character and quotes for a known character and episode. 
 
 ### Authentication
-Currently there is no authentication required for accessing the F.R.I.E.N.S. API.
+Currently there is no authentication required for accessing the Friends API. 
 
-### Rate Limiting
-Currently the requests to the F.R.I.E.N.S. API are not limited. 
+### How to start the API
 
-### Responses
-All responses default to JSON format. 
+ ```
+URL = requests.get("http://127.0.0.1:5000/
+```
+- Expected response: Friends.
 
-### Endpoints
 
-GET requests
+### Endpoints GET
 
-http://127.0.0.1:5000/characters
+1. /characters
 
-http://127.0.0.1:5000/frases/name
+This returns a json with the main characters of the TV series.
 
-http://127.0.0.1:5000/frase/episode
+url = http://127.0.0.1:5000/characters
+
+- Example response
+ ```
+ characters = requests.get("http://127.0.0.1:5000/characters").json()
+```
+
+2. /frases/
+
+This returns quotes of a given character.
+
+ ```
+ character = Joey
+ url = requests.get("http://127.0.0.1:5000/frases/Joey").json()
+```
+
+Example response:
+
+ ```
+ characters = requests.get("http://127.0.0.1:5000/frases/name").json()
+```
+
+
+URL : http://127.0.0.1:5000/frase/episode
+
+Example response:
+
+ ```
+ characters = requests.get("http://127.0.0.1:5000/frases/Rachel Quits").json()
+```
 
 
 
 
 POST requests
 
-http://127.0.0.1:5000/nuevafrase
+URL: http://127.0.0.1:5000/frase/episode
+/nuevafrase
 
-http://127.0.0.1:5000/borrarfrase
+
+URL: http://127.0.0.1:5000/borrarfrase
+/borrarfrase
+
+
+SENTIMENT  requests
+
+URL: http://127.0.0.1:5000//sentimientos/character
+/s
+
 
 
 
 ## Structure of the project files
 
 **.1 Notebooks folder:** 
-    - Clean_csv.ipynb
-    - API_PROJECT.ipynb
-    - API_Calls.ipynb
+    - Clean_csv.ipynb 
+    - API_PROJECT.ipynb 
+    - API_Calls.ipynb 
 
 **2. data:**
-    - friends.csv
-    - firends
-    - friends_sample.csv
-
-
+    - friends.csv 
+    - firends 
+    - friends_sample.csv 
 
 **3. src:**
+    - main_tools.py 
+    - sql_tools.py 
+
 **4. main.py:**
+    
+
 
 ## Libraries
+
+
 
 
