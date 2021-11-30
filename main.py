@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return "Friends"
+    return "F.R.I.E.N.D.S"
 
 
 @app.route("/characters")
@@ -17,10 +17,12 @@ def speakers():
     friends_characters = mnt.characters()
     return jsonify(friends_characters)
 
+
 @app.route("/frases/<name>")
 def quotes_names(name):
     frases = f"{name} says {mnt.quotes(name)[0]}"
     return jsonify(frases)
+
 
 @app.route("/frase/<episode>")
 def quotes_episode(episode):
@@ -46,7 +48,7 @@ def borrar():
 @app.route("/sentimientos/<AuthorName>") 
 def sentimientos(AuthorName):
     df= mnt.analisis_sentimientos(AuthorName)
-    df["phrases_token"] = df["quote_"].apply(mnt.tokenizer) #sustituir phrases_name por quote_
+    df["phrases_token"] = df["quote_"].apply(mnt.tokenizer) 
     df["resultado"] = df["phrases_token"].apply(mnt.sentiment)
     print (df.resultado)
     return str(df.resultado.mean())

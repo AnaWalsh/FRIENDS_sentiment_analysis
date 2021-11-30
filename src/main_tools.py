@@ -1,6 +1,8 @@
+from nltk.probability import RandomProbDist
 from configuration.configuration import engine
 import pandas as pd
 from textblob import TextBlob
+import random
 
 import string
 import spacy
@@ -25,34 +27,21 @@ def characters():
 def quotes(character):
     friends_character = list(engine.execute(f"SELECT idAuthor FROM project_friends.Author WHERE AuthorName = '{character}' ;"))[0][0]
     what = list(engine.execute(f"SELECT quote_ FROM Quote WHERE Author_idAuthor = '{friends_character}';"))
-    return what
+    return random.choice(what)
 
-#return random.choice(what) 
+
 
 def episodes (episodio):
     episode = list(engine.execute(f"SELECT idEpisodes from project_friends.Episodes WHERE EpTitle = '{episodio}'"))
-    print(episode[0][0])
     what = list(engine.execute(f"SELECT quote_ FROM Quote WHERE Episodes_idEpisodes = '{episode[0][0]}';"))
     return what
 
-#return random.choice(what)
-
-
-def newcharacter(character):
-
-    engine.execute(f"""
-    INSERT INTO Author (AuthorName)
-    VALUES ('{character}');
-    """)
-   
 
 def nuevomensaje(episode, quote, character):
-
     engine.execute(f"""
     INSERT INTO Quote (Episodes_idEpisodes, Author_idAuthor, quote_)
     VALUES ({episode}, '{character}', '{quote}');
     """)
-    
     return f"Se ha introducido correctamente: {episode} {quote} {character}"
 
 
@@ -88,10 +77,10 @@ def tokenizer(phrases):
     nlp = spacy.load("en_core_web_sm")
     tokens = nlp(phrases)
     filtradas = []
-    for token in tokens: #saco las palabras importantes para el análisis de sentimientos
+    for token in tokens: 
         if not token.is_stop:
             lemma = token.lemma_.lower().strip()
-            if re.search('^[a-zA-Z]+$',lemma): # Esto me quita las interrogaciones
+            if re.search('^[a-zA-Z]+$',lemma): 
                 filtradas.append(lemma)
     return " ".join(filtradas)
 

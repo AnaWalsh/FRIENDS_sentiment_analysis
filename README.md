@@ -25,7 +25,7 @@ Currently there is no authentication required for accessing the Friends API.
 ### How to start the API
 
  ```
-URL = requests.get("http://127.0.0.1:5000/
+URL = requests.get("http://127.0.0.1:5000/)
 ```
 - Expected response: Friends.
 
@@ -41,6 +41,8 @@ url = requests.get("http://127.0.0.1:5000/characters").json()
 ```
 
 -Expected response: json with the main characters.
+
+
 '''
 [
   {
